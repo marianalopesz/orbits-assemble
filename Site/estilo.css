@@ -387,7 +387,7 @@ main {
     margin-bottom: 20px
 }
 
-#btn_projeto {
+#btn_cadastro {
     margin-top: 15px;
     font-size: 25px;
     font-weight: 700;
@@ -399,21 +399,15 @@ main {
     background-color: #ffffff;
     cursor: pointer;
     position: relative;
-    cursor: pointer;
     transition: all 0.25s ease;
 }
 
-#btn_projeto:hover {
+#btn_cadastro:hover {
     color: #000000;
     background: #37BA9B;
 }
 
-#btn_projeto:active {
-    letter-spacing: 2px;
-    letter-spacing: 2px;
-}
-
-#btn_projeto a {
+#btn_cadastro a {
     text-decoration: none;
     color: #000000;
 }
