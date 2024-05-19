@@ -1,9 +1,6 @@
 body{
     background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
+    height: 90vh; 
 }
 
 h3{
@@ -19,13 +16,30 @@ input {
     outline: none;
 }
 
+.alinha_logo{
+    display: flex;
+    
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.logo_superior{
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
 .container{
     background-color: white;
     width: 850px;
     height: 500px;
     display: flex;
     border-radius: 30px;
-    display: flex;
     flex-direction: row-reverse;
     justify-content: start;
     border: 2px solid #000000;
@@ -39,6 +53,7 @@ input {
 
 .texto_login{
     display: flex;
+    padding-top: 50px;
     padding-left: 100px;
     flex-direction: column;
     text-align: center; 
