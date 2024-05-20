@@ -1,6 +1,6 @@
 body{
     background-color: #ffffff;
-    height: 90vh; 
+   
 }
 
 h3{
@@ -17,7 +17,7 @@ input {
 }
 
 .alinha_logo{
-    display: flex;
+padding-right: 10px;
     
 }
 
@@ -54,7 +54,7 @@ input {
 .texto_login{
     display: flex;
     padding-top: 50px;
-    padding-left: 100px;
+    padding-left: 95px;
     flex-direction: column;
     text-align: center; 
     align-items: center;
