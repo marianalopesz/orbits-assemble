@@ -1,7 +1,5 @@
 body{
-    background-image: url('../css/imgs/dash_inicio.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #ffffff;
 }
 header{
     position: fixed;
@@ -46,8 +44,4 @@ header{
 .navbar a:hover {
     color: #696767;
     transition: color 0.7s ease;
-}
-
-.txt_inicial{
-    display: flex;
 }

@@ -62,19 +62,6 @@ main {
     margin: 0;
 }
 
-#btn_entrar{
-    cursor: pointer;
-    width: 100px;
-    height: 30px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    border: 1px solid #000000;
-    transition: all 0.25s ease;
-}
-#btn_entrar:hover {
-    color: #000000;
-    background: #f8cde8;
-}
 
 .container {
     width: 250px;
@@ -145,7 +132,7 @@ main {
     width: 100%;
     border: none;
     background-color: rgb(2, 1, 2);
-    height: 30px;
+    height: 40px;
     color: white;
     font-size: .8em;
     font-weight: 500;

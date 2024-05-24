@@ -26,6 +26,8 @@ button {
     font-weight: Bold;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    cursor: pointer;
+    
   }
   
   button:hover {
@@ -91,6 +93,7 @@ button {
     align-items: center;
     position: relative;
     max-width: 200px;
+    padding-top: 30px;
   }
   
   .input {
