@@ -16,12 +16,44 @@
         <div class="menus_header">
             <div>
                 <ul class="navbar">
-                    <li><a href="../Dashboard/tela_desc.html">Descrição</a></li>
+                    <li><a href="../Dashboard/tela_desc.html">Integrante</a></li>
                     <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
-                    <li><a href="../Dashboard/tela_forum.html">Fórum</a></li>
+                    <li><a href="../Dashboard/tela_forum.html">Gráficos</a></li>
                 </ul>
             </div>
         </div>
     </header>
+    <div class="secao_escolha">
+        <div class="txt_selecione">
+            <h1>Selecione sua integrante favorita:</h1>
+        </div>
+        <select name="select" id="select_integrante">
+            <option value="#">-- Selecione uma opção</option>
+            <option value="heejin">Heejin</option>
+            <option value="hyunjin">Hyunjin</option>
+            <option value="haseul">Haseul</option>
+            <option value="yeojin">Yeojin</option>
+            <option value="vivi">Vivi</option>
+            <option value="kimlip">Kim lip</option>
+            <option value="jinsoul">Jinsoul</option>
+            <option value="choerry">Choerry</option>
+            <option value="yves">Yves</option>
+            <option value="chuu">Chuu</option>
+            <option value="gowon">Gowon</option>
+            <option value="hyeju">Hyeju</option>
+        </select>
+        <br>
+        <button onclick="enviarSelecao()">
+            Enviar
+        </button>
+        <div id="resultado"></div>
 </body>
+
 </html>
+
+<script>
+    function enviarSelecao(){
+        const integrante = select_integrante.value
+        resultado.innerHTML = integrante
+    }
+</script>
