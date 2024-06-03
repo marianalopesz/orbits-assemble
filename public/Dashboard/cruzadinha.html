@@ -16,7 +16,7 @@
         <div class="menus_header">
             <div>
                 <ul class="navbar">
-                    <li><a href="../Dashboard/tela_desc.html">Integrante</a></li>
+                    <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
                     <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
                     <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
                     <li><a href="../Dashboard/graficos.html">Gráficos</a></li>
@@ -27,13 +27,14 @@
 
     <body>
         <div class="containerTop">
-            <h1>Palavras-Cruzadas</h1><br>
+            <center>
+                <h1>Palavras-Cruzadas</h1><br>
+            </center>
             <div class="div_button">
                 <center>
                     <button class="button button1" id="bt_start" onclick="start()">Começar o Jogo</button>
                     <button class="button button1" style="display: none" id="bt_destroyGame"
-                        onclick="destroyGrid()">Encerrar o
-                        Jogo</button>
+                        onclick="destroyGrid()">Encerrar o Jogo</button>
                 </center>
             </div>
             <br>
@@ -70,12 +71,15 @@
                 </div>
             </div>
         </article><br><br>
-        
+
         <footer>
             <div class="container"><br>
-                <p>Developed by Carlos Santana <br>
-                    RA: 01201095 <br>
-                    1ADS-A
+                <p>
+                    <center>
+                        <h1 style="color: black; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                            Orbit Assemble
+                        </h1>
+                    </center>
                 </p>
             </div>
         </footer>
@@ -88,22 +92,22 @@
 
     var questions_list = [
         'Qual integrante tem o peixe-beta como animal representativo?',
-        'Essa integrante possui um gato chamado paldo',
-        'Tipo de memória local rápida, que se localiza dentro do chip do microprocessador, e ajudam a tornar as operações de processamento de dados mais eficientes e rápidas.)',
-        'Tipo de memória volátil que armazena dados temporariamente enquanto um computador está ligado e em uso. Qual o nome deste componente?',
-        'Tipo de memória não volátil que armazena dados permanentemente.',
-        'Tipo de memória ROM que pode ser apagada e reprogramada. ',
-        'Tipo de memória não volátil, que mesmo se não tiver energia, manterá as informações que salvas nela.',
-        'Tipo de memória que tem como função armazenar grandes quantidades de informações. Os dados armazenados não são perdidos quando desligamos o equipamento.',
-        'Tecnologia utilizada em sistemas de computadores para permitir que certos subsistemas possam acessar a memória principal do sistema diretamente, sem envolver a CPU em cada leitura ou escrita de dados.',
-        'Sinal de controle utilizado em circuitos eletrônicos para selecionar um chip específico entre vários dispositivos conectados a um mesmo computador.',
-        'Responsável por especificar endereços de memória e dispositivos periféricos. Sua largura determina a quantidade de memória que pode ser endereçada.',
-        'Responsável por transferir dados entre o processador, a memória e os dispositivos periféricos.'
+        'Essa integrante sabe imitar várias raças de cachorros',
+        'Qual a integrante mais nova do grupo?',
+        'Abandonou a escola para seguir a carreira de cantora. Qual essa integrante?',
+        'Qual integrante tem roxo como cor e cereja como fruta representativa?',
+        'Qual foi a nona integrante revelada do LOONA?',
+        'Essa integrante era cantora de opera antes de entrar para o grupo. Qual seu nome?',
+        'Conhecida por seus memes, quem é a integrante?',
+        'Qual integrante já morou no Brasil?',
+        'Única integrante estrangeira do grupo?', 
+        'Qual a integrante mais forte do grupo?',
+        'Sabe tocar piano, violão e violino. Qual é a integrante?'
     ];
 
-    var filledCell = [98, 116, 134, 152, 170, 188, 206, 117, 115, 114, 113, 112, 111, 130, 148, 166, 184, 202, 201, 200, 199, 198, 
-    165, 183, 219, 237, 255, 273, 274, 275, 276, 41, 59, 77, 95, 131, 40, 42, 43, 27, 45, 63, 81, 99, 238, 256, 292, 28, 29, 30, 31, 
-    290, 291, 293, 294, 295, 296];
+    var filledCell = [98, 116, 134, 152, 170, 188, 206, 117, 115, 114, 113, 112, 111, 130, 148, 166, 184, 202, 201, 200, 199, 198,
+        165, 183, 219, 237, 255, 273, 274, 275, 276, 41, 59, 77, 95, 131, 40, 42, 43, 27, 45, 63, 81, 99, 238, 256, 292, 28, 29, 30, 31,
+        290, 291, 293, 294, 295, 296];
 
     var firstIndex = [98, 111, 112, 198, 165, 273, 41, 40, 27, 238, 27, 290];
 
@@ -112,7 +116,7 @@
         word1: {
             letter: special_words[0].split(''),
             position: [98, 116, 134, 152, 170, 188, 206],
-            write: function () {
+            write: function () {    
 
                 for (i in word.word1.letter) {
                     var findCell = document.querySelector(`#cell_${word.word1.position[i]}`);

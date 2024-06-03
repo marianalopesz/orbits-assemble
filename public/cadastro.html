@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="imagex/png" href="./assets/imgs/logo_orbitAssemble_preta.png">
     <link rel="stylesheet" href="./css/cadastro.css">
-    <script src="./js/cadastro.js"></script>
+   
 </head>
 <body>
     <div class="cadastro">
@@ -16,9 +16,8 @@
             </div>
             <div class="texto_login">
 
-                <h3 class="titulo">Cadastre-se já!</h3>
-                <br>
-                <br>
+                <h3 class="titulo">Cadastro</h3>
+                <h4>Preencha as informações a baixo para efetuar o login.</h4>
                 
                 <div class="groupo">
                     <input class="input" id="input_nome" type="text" placeholder="Nome">
@@ -59,15 +58,9 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+      
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -87,11 +80,6 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
@@ -103,7 +91,5 @@
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
-
-    return false;
   }
 </script>

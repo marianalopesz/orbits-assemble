@@ -81,8 +81,7 @@ header {
     text-decoration: none;
   }
   
-  #btn_login:hover,
-  :focus {
+  #btn_login:hover {
     color: #ffffff;
     background: #ff00cc;
     border: 1px solid #ff00ee;
@@ -137,7 +136,7 @@ main {
     background-image: url('../assets/imgs/inicio.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    width: 60%;
+    width: 50%;
     height: 100%;
     z-index: -1;
 }
@@ -159,7 +158,7 @@ main {
     height: 30%;
     width: 14%;
     padding-top: 200px;
-    padding-left: 20px;
+    padding-left: 100px;
 }
 
 .frase_home{
@@ -254,7 +253,7 @@ main {
     float: right;
     margin-right: 20px;
     margin-left: 100px;
-    margin-top: 100px;
+    margin-top: 50px;
     line-height: 40px;
 }
 

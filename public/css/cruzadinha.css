@@ -88,9 +88,10 @@ button {
     margin: auto;
 }
 .containerTop {
-    padding-top: 80px;
+    padding-top: 130px;
     width: 1100px;
     margin: auto;
+    color: #ffffff;
 }
 
 #div_game {
@@ -118,7 +119,7 @@ button {
 }
 
 .button1:hover {
-    background-color: #aa045f;
+    background-color: #fb93cf;
     color: white;
 }
 
@@ -192,5 +193,4 @@ footer p {
     background-color: #EC7063;
     color: #7B241C;
     border: 1px #7B241C solid;
-
 }
