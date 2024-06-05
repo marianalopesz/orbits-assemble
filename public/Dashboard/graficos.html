@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="imagex/png" href="../assets/imgs/logo_orbitAssemble_preta.png">
     <link rel="stylesheet" href="../css/graficos.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -25,10 +26,34 @@
         </div>
     </header>
     <div class="secao_dash">
-        <div class="container"></div>
+        <div class="container"> <canvas id="chart"></canvas> </div>
         <div class="secao_select">
-            <div class="container_select">aaaaa</div>
-            <div class="container_select">aaaa</div>
+            <div class="container_select">Total de votos:</div>
+            <div class="container_select">Data do último voto:</div>
         </div>
     </div>
 </body>
+
+<script>
+    const ctx1 = document.getElementById('chart');
+
+    new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: [],
+      datasets: [{
+        label: '',
+        data: [30, 29, 28, 25, 22, 23],
+        borderWidth: 1
+      },
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

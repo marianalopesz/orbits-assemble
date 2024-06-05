@@ -30,18 +30,18 @@
         </div>
         <select name="select" id="select_integrante">
             <option value="#">-- Selecione uma opção</option>
-            <option value="heejin">Heejin</option>
-            <option value="hyunjin">Hyunjin</option>
-            <option value="haseul">Haseul</option>
-            <option value="yeojin">Yeojin</option>
-            <option value="vivi">Vivi</option>
-            <option value="kimlip">Kim lip</option>
-            <option value="jinsoul">Jinsoul</option>
-            <option value="choerry">Choerry</option>
-            <option value="yves">Yves</option>
-            <option value="chuu">Chuu</option>
-            <option value="gowon">Gowon</option>
-            <option value="hyeju">Hyeju</option>
+            <option value="1">Heejin</option>
+            <option value="2">Hyunjin</option>
+            <option value="3">Haseul</option>
+            <option value="4">Yeojin</option>
+            <option value="5">Vivi</option>
+            <option value="6">Kim lip</option>
+            <option value="7">Jinsoul</option>
+            <option value="8">Choerry</option>
+            <option value="9">Yves</option>
+            <option value="10">Chuu</option>
+            <option value="11">Gowon</option>
+            <option value="12">Hyeju</option>
         </select>
         <br>
         <button onclick="enviarSelecao()">
@@ -65,12 +65,12 @@
 
 <script>
     function enviarSelecao() {
-        const integrante = select_integrante.value
+        var integrante = select_integrante.value
 
         if (integrante == '#') {
             alert('Selecione uma opção válida')
         }
-        if (integrante == 'heejin') {
+        if (integrante == '1') {
             interface_escolha.innerHTML = `<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/heejin_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -113,7 +113,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'hyunjin') {
+        if (integrante == '2') {
             interface_escolha.innerHTML = `<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/hyunjin_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -156,7 +156,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'haseul') {
+        if (integrante == '3') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/haseul_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -199,7 +199,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'yeojin') {
+        if (integrante == '4') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/yeojin_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -242,7 +242,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'vivi') {
+        if (integrante == '5') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/vivi_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -285,7 +285,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'kimlip') {
+        if (integrante == '6') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/kimlip_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -328,7 +328,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'jinsoul') {
+        if (integrante == '7') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/jinsoul_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -371,7 +371,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'choerry') {
+        if (integrante == '8') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/choerry_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -414,7 +414,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'yves') {
+        if (integrante == '9') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/yves_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -457,7 +457,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'chuu') {
+        if (integrante == '10') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/chuu_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -500,7 +500,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'gowon') {
+        if (integrante == '11') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/gowon_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -543,7 +543,7 @@
 </div>
 </div>`
         }
-        if (integrante == 'hyeju') {
+        if (integrante == '12') {
             interface_escolha.innerHTML =`<br><div class="alinhando"><img class="img_integrante" src="../assets/imgs/hyeju_escolha.jpg">
                 <div class="main">
   <div class="currentplaying">
@@ -586,5 +586,32 @@
 </div>
 </div>`
         }
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            fkIntegrante: integrante
+        }
+
+        fetch(`/votos/enviarVoto/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                //window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
     }
 </script>
