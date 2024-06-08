@@ -115,11 +115,35 @@ header {
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
+    text-decoration-skip-ink: none;
+}
+
+@keyframes loonadient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.loonadient {
+    animation-duration: 5s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: loonadient;
 }
 
 .navbar a:hover {
-    color: #feb6e6;
-    transition: color 0.7s ease;
+    background: linear-gradient(90deg, #DE3373, #FCCA28, #08A953, #F5712A, #F59EAF, #EE1B3E, #1E76B8, #7C2E87, #7A0434, #F98F81, #37BA9B, #C0C2C2);
+    background-size: 2400% 2400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: loonadient 5s ease infinite;
+    -moz-animation: loonadient 5s ease infinite;
+    animation: loonadient 5s ease infinite;
 }
 
 main {
@@ -364,7 +388,7 @@ main {
 }
 
 .ultima_secao_projeto {
-    padding: 50px 180px 0px;
+    margin: 30px;
 }
 
 .ultima_secao_projeto h3 {
@@ -473,4 +497,31 @@ footer{
 }
 .cor_rodape{
     color: #000000;
+}
+
+.container_onu{
+    margin: 50px;
+    background-color: #000000;
+    width: 80%;
+    height: 600px;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #F8CDF7;
+}
+
+.img_onu{
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+}
+
+.txt_onu{ 
+    width: 60%;
+    font-size: 20px;
+    color: #fffdfd;
+
 }

@@ -12,10 +12,11 @@
 
 <body>
     <header>
-        <a href="../Dashboard/dashboard.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
+        <a href="../index.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
         <div class="menus_header">
             <div>
                 <ul class="navbar">
+                    <li><a href="../Dashboard/dashboard.html">Home</a></li>
                     <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
                     <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
                     <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
@@ -299,7 +300,7 @@
         div_questions.style.display = 'none';
 
         document.querySelector('#div_canvasCruzada').innerHTML = '';
-        pontuation();
+        destroy();
     }
 
     function gameSequence() {
@@ -349,6 +350,11 @@
 
     }
 
+    function destroy(){
+        div_information.style.display = 'block';
+
+        div_information.innerHTML = '<br> <h1 style="text-align: center;">Você finalizou o jogo.</h1><br><br>';
+    }
 
     function pontuation() {
         div_information.style.display = 'block';

@@ -2,58 +2,238 @@
 <html lang="pt-br">
 
 <head>
-    <title>Orbit Assemble</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="imagex/png" href="../assets/imgs/logo_orbitAssemble_preta.png">
-    <link rel="stylesheet" href="../css/graficos.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Orbit Assemble</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="imagex/png" href="../assets/imgs/logo_orbitAssemble_preta.png">
+  <link rel="stylesheet" href="../css/graficos.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
-    <header>
-        <a href="../Dashboard/dashboard.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
-        <div class="menus_header">
-            <div>
-                <ul class="navbar">
-                    <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
-                    <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
-                    <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
-                    <li><a href="../Dashboard/graficos.html">Gráficos</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-    <div class="secao_dash">
-        <div class="container"> <canvas id="chart"></canvas> </div>
-        <div class="secao_select">
-            <div class="container_select">Total de votos:</div>
-            <div class="container_select">Data do último voto:</div>
-        </div>
+<body onload="obter(), indicadorqtdVoto()">
+  <header>
+    <a href="../index.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
+    <div class="menus_header">
+      <div>
+        <ul class="navbar">
+          <li><a href="../Dashboard/dashboard.html">Home</a></li>
+          <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
+          <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
+          <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
+          <li><a href="../Dashboard/graficos.html">Gráficos</a></li>
+        </ul>
+      </div>
     </div>
+  </header>
+  <div class="secao_dash">
+    <div class="container"> <canvas id="chart"></canvas> </div>
+    <div class="secao_select">
+      <div class="container_select">Total de votos:
+        <h3 id="qtdVotos"></h3>
+      </div>
+      <div class="container_select">
+        <center>
+          Última integrante selecionada:
+        </center>
+        <h3 id="ultimaSelecao"></h3>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
-    const ctx1 = document.getElementById('chart');
+  const ctx1 = document.getElementById('chart');
 
-    new Chart(ctx1, {
-    type: 'bar',
-    data: {
-      labels: [],
+  function plotarGrafico(resposta) {
+    console.log(resposta)
+
+    let labels = [];
+
+    let dados = {
+      labels: labels,
       datasets: [{
-        label: '',
-        data: [30, 29, 28, 25, 22, 23],
-        borderWidth: 1
-      },
-      ]
-    },
-    options: {
+        label: 'Ranking de integrantes favoritas dos usuários',
+        data: [],
+        backgroundColor: '#F8CDF7',
+        borderColor: '#b83593',
+        borderWidth: 1,
+        fill: true
+      }]
+    };
+
+    let opcoes = {
+
       scales: {
+
+        x: {
+          ticks: {
+
+            color: '#fff'
+          }
+        },
         y: {
-          beginAtZero: true
+          ticks: {
+            color: '#fff'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#fff'
+          }
         }
       }
     }
-  });
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (let i = 0; i < resposta.length; i++) {
+      let registro = resposta[i];
+      labels.push(registro.nome); // Adiciona o nome do usuário como rótulo
+      dados.datasets[0].data.push(registro.votosIntegrante);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+      type: 'bar',
+      data: dados,
+      options: opcoes
+    };
+
+    let myChart = new Chart(
+      document.getElementById(`chart`),
+      config
+    );
+
+    setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+  }
+
+  function obter() {
+    fetch("/pontuacaoGrafico/obter", { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
+          plotarGrafico(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  function atualizarGrafico(dados, myChart) {
+    fetch("/pontuacaoGrafico/obter", { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (novoRegistro) {
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+          console.log(`Dados atuais do gráfico:`);
+          console.log(dados);
+
+          if (novoRegistro.length > 0 && novoRegistro[0].votosIntegrante !== dados.labels[dados.labels.length - 1]) {
+            if (!dados.labels.includes(novoRegistro[0].nome)) {
+
+              if (dados.labels.length >= 5) {
+                dados.labels.pop();
+                dados.datasets[0].data.pop();
+              }
+              dados.labels.unshift(novoRegistro[0].nome);
+              dados.datasets[0].data.unshift(novoRegistro[0].votosIntegrante);
+              myChart.update();
+            } else {
+              console.log("Novo dado duplicado. O gráfico não será atualizado.");
+            }
+          } else {
+            console.log("Nenhum novo dado disponível. O gráfico não será atualizado.");
+          }
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+        });
+      } else {
+        console.error('Nenhum dado encontrado');
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+      });
+
+
+  }
+
+  function indicadorqtdVoto() {
+    indicadorUltimaSelecao();
+    fetch("/qtdVotos/contar", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          qtdVotos.innerHTML = json[0].contarVotos;
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    function indicadorUltimaSelecao() {
+      fetch("/nomeUltimaSelecao/guardar", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then(json => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            ultimaSelecao.innerHTML = json[0].NomeUltimaIntegrante;
+          });
+
+        } else {
+
+          console.log("Houve um erro ao tentar realizar o login!");
+
+        }
+
+      }).catch(function (erro) {
+        console.log(erro);
+      })
+
+    }
+  }
 </script>

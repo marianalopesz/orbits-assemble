@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <title>Orbit Assemble</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="imagex/png" href="./assets/imgs/logo_orbitAssemble_preta.png">
-    <link rel="stylesheet" href="./css/cadastro.css">
-   
+  <title>Orbit Assemble</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="imagex/png" href="./assets/imgs/logo_orbitAssemble_preta.png">
+  <link rel="stylesheet" href="./css/cadastro.css">
+  <script src="./js/cadastro.js"></script>
+
 </head>
+
 <body>
-    <div class="cadastro">
-        <div class="container">
-            <div class="alinhar_logo">
-            </div>
-            <div class="texto_login">
+  <div class="cadastro">
+    <div class="container">
+      <div class="alinhar_logo">
+      </div>
+      <div class="texto_login">
 
-                <h3 class="titulo">Cadastro</h3>
-                <h4>Preencha as informações a baixo para efetuar o login.</h4>
-                
-                <div class="groupo">
-                    <input class="input" id="input_nome" type="text" placeholder="Nome">
-                    </div>
-                <div class="groupo">
-                  <input class="input" id="input_email" type="email" placeholder="E-mail" >
-                  </div>
-                <div class="groupo">
-                  <input class="input" id="input_senha" type="password" placeholder="Senha">
-                  </div> 
-                  <div class="groupo">
-                  <input class="input" id="input_confirmar_senha" type="password" placeholder="Confirmar Senha" required="">
-                  </div>
+        <h3 class="titulo">Cadastro</h3>
+        <h4>Preencha as informações a baixo para efetuar o login.</h4>
 
-                <br> <button id="button" onclick="cadastrar()">Cadastrar</button>
-                <a id="direcionar_inicio" href="./index.html"
-                    style="color:#000000;font-family:sans-serif;font-size:small;">
-                   <h4> <b>Voltar</b> </h4></a>
-            </div>
+        <div class="groupo">
+          <input class="input" id="input_nome" type="text" placeholder="Nome">
         </div>
+        <div class="groupo">
+          <input class="input" id="input_email" type="email" placeholder="E-mail">
+        </div>
+        <div class="groupo">
+          <input class="input" id="input_senha" type="password" placeholder="Senha">
+        </div>
+        <div class="groupo">
+          <input class="input" id="input_confirmar_senha" type="password" placeholder="Confirmar Senha" required="">
+        </div>
+
+        <br> <button id="button" onclick="cadastrar()">Cadastrar</button>
+        <a id="direcionar_inicio" href="./index.html" style="color:#000000;font-family:sans-serif;font-size:small;">
+          <h4> <b>Voltar</b> </h4>
+        </a>
+      </div>
     </div>
+  </div>
 </body>
+
 </html>
 
 <script>
-    function cadastrar() {
+  function cadastrar() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -51,45 +55,39 @@
     var emailVar = input_email.value;
     var senhaVar = input_senha.value;
     var confirmacaoSenhaVar = input_confirmar_senha.value;
-    
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
-      
-      return false;
-    } 
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+    if (validacaoCadastrar()) {
+      return true;
+    } else {
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+    }
   }
 </script>

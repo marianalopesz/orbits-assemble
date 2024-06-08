@@ -12,10 +12,11 @@
 
 <body>
     <header>
-        <a href="../Dashboard/dashboard.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
+        <a href="../index.html"><img class="logo" src="../assets/imgs/logo_orbitAssemble.png"></a>
         <div class="menus_header">
             <div>
                 <ul class="navbar">
+                    <li><a href="../Dashboard/dashboard.html">Home</a></li>
                     <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
                     <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
                     <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
@@ -24,11 +25,16 @@
             </div>
         </div>
     </header>
-    <div class="txt_inicial">
-        <h1>Seja Bem-vindo(a) ao Orbit Assemble!</h1>
-        <h2>Vá agora a tela informações e descubra mais sobre cada integrante do loona!</h2>
-        <button id="botao"><a href="../Dashboard/tela_desc.html">Ir agora!</a></button>
+    <div id="txt" class="txt_inicial">
     </div>
 </body>
 
 </html>
+
+<script>
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+
+    txt.innerHTML = `<h1>Seja Bem-vindo(a) ${nomeUsuario} ao Orbit Assemble!</h1>
+        <h2>Vá agora a tela informações e descubra mais sobre cada integrante do loona!</h2>
+        <button id="botao"><a href="../Dashboard/tela_desc.html">Ir agora!</a></button>`
+</script>

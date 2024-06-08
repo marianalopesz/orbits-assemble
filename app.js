@@ -18,6 +18,9 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var votosRouter = require("./src/routes/votos");
+var pontuacaoGraficoRouter = require("./src/routes/pontuacaoGrafico");
+var qtdVotosRouter = require("./src/routes/qtdVotos");
+var nomeUltimaSelecaoRouter = require("./src/routes/nomeUltimaSelecao");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +31,9 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/votos", votosRouter);
+app.use("/pontuacaoGrafico", pontuacaoGraficoRouter);
+app.use("/qtdVotos", qtdVotosRouter);
+app.use("/nomeUltimaSelecao", nomeUltimaSelecaoRouter);
 
 
 app.listen(PORTA_APP, function () {
