@@ -107,3 +107,8 @@ header{
     flex-direction: column;
     justify-content: space-around;
 }
+
+.content_select {
+    display: flex;
+    flex-direction: column;
+}

@@ -6,14 +6,5 @@ function direcionarDash() {
     }else{
         window.location = "./Dashboard/dashboard.html";
     }
-    fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            emailServer: email,
-            senhaServer: senha
-        })
-    })
+   
 }

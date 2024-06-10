@@ -19,9 +19,9 @@
         <ul class="navbar">
           <li><a href="../Dashboard/dashboard.html">Home</a></li>
           <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
-          <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
+          <li><a href="../Dashboard/tela_escolha.html">Escolha sua bias</a></li>
           <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
-          <li><a href="../Dashboard/graficos.html">Gráficos</a></li>
+          <li><a href="../Dashboard/graficos.html">Gráfico</a></li>
         </ul>
       </div>
     </div>
@@ -29,14 +29,18 @@
   <div class="secao_dash">
     <div class="container"> <canvas id="chart"></canvas> </div>
     <div class="secao_select">
-      <div class="container_select">Total de votos:
-        <h3 id="qtdVotos"></h3>
-      </div>
       <div class="container_select">
-        <center>
-          Última integrante selecionada:
+        <center class="content_select">
+          Total de seleções realizadas:
+          <h3 id="qtdVotos"></h3>
         </center>
-        <h3 id="ultimaSelecao"></h3>
+      </div>
+
+      <div class="container_select">
+        <center style="padding-top: 20px;" class="content_select">
+          Última integrante selecionada:
+          <h3 id="ultimaSelecao"></h3>
+        </center>
       </div>
     </div>
   </div>

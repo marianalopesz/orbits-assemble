@@ -57,9 +57,7 @@
     var confirmacaoSenhaVar = input_confirmar_senha.value;
 
     if (validacaoCadastrar()) {
-      return true;
-    } else {
-      // Enviando o valor da nova input
+
       fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {

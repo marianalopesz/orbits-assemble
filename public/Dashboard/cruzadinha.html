@@ -18,9 +18,9 @@
                 <ul class="navbar">
                     <li><a href="../Dashboard/dashboard.html">Home</a></li>
                     <li><a href="../Dashboard/tela_desc.html">Integrantes</a></li>
-                    <li><a href="../Dashboard/tela_escolha.html">Escolha sua favorita</a></li>
+                    <li><a href="../Dashboard/tela_escolha.html">Escolha sua bias</a></li>
                     <li><a href="../Dashboard/cruzadinha.html">Cruzadinha</a></li>
-                    <li><a href="../Dashboard/graficos.html">Gráficos</a></li>
+                    <li><a href="../Dashboard/graficos.html">Gráfico</a></li>
                 </ul>
             </div>
         </div>
@@ -40,6 +40,7 @@
             </div>
             <br>
         </div>
+        
         <article>
             <div class="container">
                 <div style="display: none" id="div_verifiedAnswer">
@@ -55,7 +56,7 @@
                             Perguntas serão exibidas na parte inferior do quadro; <br><br>
                             Insira a sua resposta na caixa de texto e clique em "Verificar" para conferir a sua
                             resposta;<br><br>
-                            A partida acaba quando as 12 questões forem respondidas; <br><br>
+                            A partida acaba quando as 12 questões forem respondidas ou quando clicar no botão "Encerrar o Jogo"; <br><br>
                         </div>
                         </p>
                     </div>
@@ -89,39 +90,36 @@
 </html>
 
 <script>
-    var special_words = ['jinsoul', 'hyunjin', 'yeojin', 'gowon', 'choerry', 'yves', 'haseul', 'chuu', 'heejin', 'vivi', 'hyeju', 'kim lip'];
-
-    var questions_list = [
-        'Qual integrante tem o peixe-beta como animal representativo?',
-        'Essa integrante sabe imitar várias raças de cachorros',
-        'Qual a integrante mais nova do grupo?',
-        'Abandonou a escola para seguir a carreira de cantora. Qual essa integrante?',
-        'Qual integrante tem roxo como cor e cereja como fruta representativa?',
-        'Qual foi a nona integrante revelada do LOONA?',
-        'Essa integrante era cantora de opera antes de entrar para o grupo. Qual seu nome?',
-        'Conhecida por seus memes, quem é a integrante?',
-        'Qual integrante já morou no Brasil?',
-        'Única integrante estrangeira do grupo?', 
-        'Qual a integrante mais forte do grupo?',
-        'Sabe tocar piano, violão e violino. Qual é a integrante?'
+    var qa_json = [
+        { "question": "Qual integrante tem o peixe-beta como animal representativo?", "answer": "jinsoul" },
+        { "question": "Essa integrante sabe imitar várias raças de cachorros", "answer": "hyunjin" },
+        { "question": "Qual a integrante mais nova do grupo?", "answer": "yeojin" },
+        { "question": "Abandonou a escola para seguir a carreira de cantora. Qual essa integrante?", "answer": "gowon" },
+        { "question": "Qual integrante tem roxo como cor e cereja como fruta representativa?", "answer": "choerry" },
+        { "question": "Qual foi a nona integrante revelada do LOONA?", "answer": "yves" },
+        { "question": "Essa integrante era cantora de opera antes de entrar para o grupo. Qual seu nome?", "answer": "haseul" },
+        { "question": "Qual a integrante conhecida por seus memes?", "answer": "chuu" },
+        { "question": "Qual integrante já morou no Brasil?", "answer": "heejin" },
+        { "question": "Única integrante estrangeira do grupo?", "answer": "vivi" },
+        { "question": "Qual a integrante mais forte do grupo?", "answer": "hyeju" },
+        { "question": "Sabe tocar piano, violão e violino. Qual é a integrante?", "answer": "kim lip" }
     ];
 
     var filledCell = [98, 116, 134, 152, 170, 188, 206, 117, 115, 114, 113, 112, 111, 130, 148, 166, 184, 202, 201, 200, 199, 198,
         165, 183, 219, 237, 255, 273, 274, 275, 276, 41, 59, 77, 95, 131, 40, 42, 43, 27, 45, 63, 81, 99, 238, 256, 292, 28, 29, 30, 31,
-        290, 291, 293, 294, 295, 296];
+        291, 293, 294, 295, 296, 297];
 
-    var firstIndex = [98, 111, 112, 198, 165, 273, 41, 40, 27, 238, 27, 290];
+    var firstIndex = [98, 111, 112, 198, 165, 273, 41, 40, 27, 238, 27, 291];
+
+    var special_words = qa_json.map(item => item.answer);
 
     var word = {
-
         word1: {
             letter: special_words[0].split(''),
             position: [98, 116, 134, 152, 170, 188, 206],
             write: function () {    
-
                 for (i in word.word1.letter) {
                     var findCell = document.querySelector(`#cell_${word.word1.position[i]}`);
-
                     findCell.innerHTML = word.word1.letter[i];
                     console.log(word.word1.letter[i]);
                 }
@@ -134,12 +132,10 @@
             write: function () {
                 for (i in word.word2.letter) {
                     var findCell = document.querySelector(`#cell_${word.word2.position[i]}`);
-
                     findCell.innerHTML = word.word2.letter[i];
                     console.log(word.word2.letter[i]);
                 }
                 cell_111.innerHTML = '<span style="color: red; font-size:10px">2</span>h';
-
             }
         },
         word3: {
@@ -148,7 +144,6 @@
             write: function () {
                 for (i in word.word3.letter) {
                     var findCell = document.querySelector(`#cell_${word.word3.position[i]}`);
-
                     findCell.innerHTML = word.word3.letter[i];
                     console.log(word.word3.letter[i]);
                 }
@@ -161,7 +156,6 @@
             write: function () {
                 for (i in word.word4.letter) {
                     var findCell = document.querySelector(`#cell_${word.word4.position[i]}`);
-
                     findCell.innerHTML = word.word4.letter[i];
                     console.log(word.word4.letter[i]);
                 }
@@ -174,7 +168,6 @@
             write: function () {
                 for (i in word.word5.letter) {
                     var findCell = document.querySelector(`#cell_${word.word5.position[i]}`);
-
                     findCell.innerHTML = word.word5.letter[i];
                     console.log(word.word5.letter[i]);
                 }
@@ -188,7 +181,6 @@
             write: function () {
                 for (i in word.word6.letter) {
                     var findCell = document.querySelector(`#cell_${word.word6.position[i]}`);
-
                     findCell.innerHTML = word.word6.letter[i];
                     console.log(word.word6.letter[i]);
                 }
@@ -201,7 +193,6 @@
             write: function () {
                 for (i in word.word7.letter) {
                     var findCell = document.querySelector(`#cell_${word.word7.position[i]}`);
-
                     findCell.innerHTML = word.word7.letter[i];
                     console.log(word.word7.letter[i]);
                 }
@@ -214,7 +205,6 @@
             write: function () {
                 for (i in word.word8.letter) {
                     var findCell = document.querySelector(`#cell_${word.word8.position[i]}`);
-
                     findCell.innerHTML = word.word8.letter[i];
                     console.log(word.word8.letter[i]);
                 }
@@ -228,7 +218,6 @@
             write: function () {
                 for (i in word.word9.letter) {
                     var findCell = document.querySelector(`#cell_${word.word9.position[i]}`);
-
                     findCell.innerHTML = word.word9.letter[i];
                     console.log(word.word9.letter[i]);
                 }
@@ -241,7 +230,6 @@
             write: function () {
                 for (i in word.word10.letter) {
                     var findCell = document.querySelector(`#cell_${word.word10.position[i]}`);
-
                     findCell.innerHTML = word.word10.letter[i];
                     console.log(word.word10.letter[i]);
                 }
@@ -254,7 +242,6 @@
             write: function () {
                 for (i in word.word11.letter) {
                     var findCell = document.querySelector(`#cell_${word.word11.position[i]}`);
-
                     findCell.innerHTML = word.word11.letter[i];
                     console.log(word.word11.letter[i]);
                 }
@@ -263,23 +250,21 @@
         },
         word12: {
             letter: special_words[11].split(''),
-            position: [290, 291, 292, 293, 294, 295, 296],
+            position: [291, 292, 293, 294, 295, 296, 297],
             write: function () {
                 for (i in word.word12.letter) {
                     var findCell = document.querySelector(`#cell_${word.word12.position[i]}`);
-
                     findCell.innerHTML = word.word12.letter[i];
                     console.log(word.word12.letter[i]);
                 }
-                cell_290.innerHTML = '<span style="color: red; font-size:10px">12</span>k';
-                cell_293.innerHTML = '-';
+                cell_291.innerHTML = '<span style="color: red; font-size:10px">12</span>k';
+                cell_294.innerHTML = '-';
             }
         }
     };
 
     var widthTable = 18;
     var heightTable = 18;
-
 
     var cont_correctAnswer = 0;
 
@@ -291,105 +276,78 @@
         div_information.innerHTML = '';
         renderGrid();
         gameSequence();
-
     }
 
     function destroyGrid() {
         bt_start.style.display = 'block';
         bt_destroyGame.style.display = 'none';
         div_questions.style.display = 'none';
-
         document.querySelector('#div_canvasCruzada').innerHTML = '';
         destroy();
     }
 
     function gameSequence() {
-        span_questionText.innerHTML = `<b>${cont_correctAnswer + 1}.</b> ${questions_list[cont_correctAnswer]}`;
+        if (cont_correctAnswer >= qa_json.length) {
+            setTimeout(destroyGrid, 100);
+            return;
+        }
+
+        span_questionText.innerHTML = `<b>${cont_correctAnswer + 1}.</b> ${qa_json[cont_correctAnswer].question}`;
 
         if (cont_correctAnswer == 1) {
             word.word1.write();
-        }
-        else if (cont_correctAnswer == 2) {
+        } else if (cont_correctAnswer == 2) {
             word.word2.write();
-        }
-        else if (cont_correctAnswer == 3) {
+        } else if (cont_correctAnswer == 3) {
             word.word3.write();
-        }
-        else if (cont_correctAnswer == 4) {
+        } else if (cont_correctAnswer == 4) {
             word.word4.write();
-        }
-        else if (cont_correctAnswer == 5) {
+        } else if (cont_correctAnswer == 5) {
             word.word5.write();
-        }
-        else if (cont_correctAnswer == 6) {
+        } else if (cont_correctAnswer == 6) {
             word.word6.write();
-        }
-        else if (cont_correctAnswer == 7) {
+        } else if (cont_correctAnswer == 7) {
             word.word7.write();
-        }
-        else if (cont_correctAnswer == 8) {
+        } else if (cont_correctAnswer == 8) {
             word.word8.write();
-        }
-        else if (cont_correctAnswer == 9) {
+        } else if (cont_correctAnswer == 9) {
             word.word9.write();
-        }
-        else if (cont_correctAnswer == 10) {
+        } else if (cont_correctAnswer == 10) {
             word.word10.write();
-        }
-        else if (cont_correctAnswer == 11) {
+        } else if (cont_correctAnswer == 11) {
             word.word11.write();
-        }
-        else if (cont_correctAnswer == 12) {
+        } else if (cont_correctAnswer == 12) {
             word.word12.write();
-
-            setTimeout(function () {
-                destroyGrid();
-            }, 3000);
         }
-
-
     }
 
     function destroy(){
         div_information.style.display = 'block';
-
         div_information.innerHTML = '<br> <h1 style="text-align: center;">Você finalizou o jogo.</h1><br><br>';
     }
 
     function pontuation() {
         div_information.style.display = 'block';
-
         div_information.innerHTML = '<h1 style="text-align: center;">Parabéns!!</h1><br><br><p style="text-align: center;">Você finalizou o jogo</p><br><br>';
     }
 
     function renderGrid() {
         var tableGame = '<table id="gridGame" cellspacing=0 cellpadding=0>';
-
-        // &nbsp its used to set null value to a cell
         var cellContent_tableGame = '&nbsp';
         var cell = 0;
         for (var row = 1; row <= heightTable; row++) {
-
             tableGame += `<tr id="row_${row}">`;
-
             for (var column = 1; column <= widthTable; column++, cell++) {
                 tableGame += `<td class="deadCell" id="cell_${cell}">` + cellContent_tableGame + '</td>';
-
             }
             tableGame += '</tr>';
-
         }
         tableGame += '</table>';
-
         document.querySelector('#div_canvasCruzada').innerHTML = tableGame;
-
         paintCells();
     }
 
-
-
     function paintCells() {
-
         for (item in filledCell) {
             var paintCell = document.getElementById(`cell_${filledCell[item]}`);
             paintCell.removeAttribute('deadCell');
@@ -398,9 +356,7 @@
 
         for (var initial = 0; initial < firstIndex.length; initial++) {
             var paintIndex_cell = document.getElementById(`cell_${firstIndex[initial]}`);
-
             paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">${initial + 1}</span>`;
-
             if (initial == 8 || initial == 10) {
                 paintIndex_cell.innerHTML = `<span style="color: red; font-size:10px">9_11</span>`;
             }
@@ -409,33 +365,28 @@
 
     function verify() {
         var answer = input_answer.value;
-
         if (answer != '') {
             answer = answer.toLowerCase();
             if (answer == special_words[cont_correctAnswer]) {
                 div_verifiedAnswer.classList.add('correctAnswer');
                 div_verifiedAnswer.innerHTML = '<br>Resposta Correta!';
                 cont_correctAnswer++;
-            }
-            else {
+            } else {
                 div_verifiedAnswer.classList.add('wrongAnswer');
                 div_verifiedAnswer.innerHTML = '<br>Resposta Incorreta, tente novamente';
             }
             setTimeout(function () {
                 div_verifiedAnswer.style.display = 'block';
             }, 500);
-
             setTimeout(function () {
                 div_verifiedAnswer.style.display = 'none';
             }, 3000);
-
             input_answer.value = '';
             gameSequence();
-        }
-        else {
+        } else {
             alert('Por Favor, digite uma resposta na caixa de texto');
         }
-    }</script>
+    }
+</script>
 </body>
-
 </html>

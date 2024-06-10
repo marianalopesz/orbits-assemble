@@ -7,7 +7,7 @@ function validacaoCadastrar() {
     const senha = input_senha.value;
     const confirmarSenha = input_confirmar_senha.value;
 
-    let validar = false;
+    let passouNaValidacao = false;
 
     if (email == "" || senha == "" || confirmarSenha == "" || nome == "") {
         alert('Preencha todos os campos!')
@@ -20,14 +20,20 @@ function validacaoCadastrar() {
     } else if (validarSenha()) {
         alert('Senha deve conter números.')
     } else{
-        validar = true;
+      passouNaValidacao = true;
     }
+
+    return passouNaValidacao;
 }
 
-function validacaoSenha(){
+function validarSenha(){
+    const senha = input_senha.value;
+
+
     for (let posicao = 0; posicao < listaNumeros.length; posicao += 1) {
-        if (senha.indexOf(listaNumeros[posicao]) < 0) {
-            alert('Senha precisa conter números.')
-        }
+        if (senha.indexOf(listaNumeros[posicao]) >= 0) {
+            return false;
+        } 
     }
+    return true;
 }
